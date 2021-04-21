@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import {View,Pressable,StyleSheet, Text as NativeText} from 'react-native';
+import {useHistory} from 'react-router-native'
 import {Formik, validateYupSchema} from 'formik'
 import FormikTextInput from './FormikTextInput'
 import Text from './Text';
 import * as yup from 'yup';
 import useSignIn from '../Hooks/useSignIn'
-import AuthStorage from '../utils/authStorage'
+
 
 const initialValues = {
     username:'',
@@ -36,10 +37,12 @@ const SignInForm = ({onSubmit}) => {
 }
 
 const SignIn = () => {
+    let history = useHistory();
     const [signIn,result] = useSignIn(); 
     useEffect(()=>{
         if(result.data){
-            console.log(result.data)
+            //console.log(result.data)
+            history.push('/');
         }
     },[result.data])
 

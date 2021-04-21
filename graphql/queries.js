@@ -9,3 +9,12 @@ export const REPOSITORIES_CONNECTION = gql`
     }
     ${RepositoriesConnectionDetailFragment}
 `
+export const CHECK_AUTHORIZATION = gql`
+    query getAuthorizedUser{
+        authorizedUser{
+            id,
+            username,
+            reviewCount,
+        }
+    }
+`
