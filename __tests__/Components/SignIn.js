@@ -96,13 +96,13 @@ describe('SignIn', ()=>{
             const signIn = jest.fn();
                 const {getByTestId } = render(<SignIn signIn={signIn}/>);
                 await act(async () => {
-                    fireEvent.changeText(getByTestId('usernameField'),'kalle');
+                    await fireEvent.changeText(getByTestId('usernameField'),'kalle');
                 });
                 await act(async () => {
-                    fireEvent.changeText(getByTestId('passwordField'),'password');
+                    await fireEvent.changeText(getByTestId('passwordField'),'password');
                 });
                 await act(async () => {
-                    fireEvent.press(getByTestId('submitButton'));
+                    await fireEvent.press(getByTestId('submitButton'));
                 });
 
                   
@@ -111,10 +111,10 @@ describe('SignIn', ()=>{
                 
             await waitFor(()=>{
                 expect(signIn).toHaveBeenCalledTimes(1);
-                // expect(signIn.mock.calls[0][0]).toEqual({
-                //     username:'kalle',
-                //     password:'password'
-                // })
+                expect(signIn.mock.calls[0][0]).toEqual({
+                    username:'kalle',
+                    password:'password'
+                })
             })
         })
     })
