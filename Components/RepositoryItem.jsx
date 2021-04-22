@@ -9,12 +9,12 @@ const RepositoryItem = (props) => {
 
     })
     return (
-        <View style={styles.RIContainer}>
+        <View testID="RepositoryContainer" style={styles.RIContainer}>
 
             <View style={styles.avatarNameContainer}>
                 <Image style={styles.avatar} source={{uri:ownerAvatarUrl}}/>
                 <View style={styles.NameDescriptionContainer}>
-                    <Text style={{fontWeight:'bold'}}>{fullName}</Text>
+                    <Text testID='RepositoryFullName'style={{fontWeight:'bold'}}>{fullName}</Text>
                     <Text>{description}</Text>
                     <View style={styles.languagesContainer}>
                         <LanguageItem language={language}/> 
