@@ -4,6 +4,8 @@ import RepositoryList from './Components/RepositoryList';
 import AppBar from './Components/AppBar';
 import SignIn from './Components/SignIn';
 import {Route, Switch} from 'react-router-native';
+import Repository from './Components/Repository';
+
 
 export default function Main() {
   return (
@@ -15,6 +17,9 @@ export default function Main() {
             </Route>
             <Route path='/SignIn' exact>
               <SignIn />
+            </Route>
+            <Route path='/Repositories/:id'>
+              <Repository />
             </Route>
         </Switch>
         </View>

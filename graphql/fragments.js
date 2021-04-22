@@ -16,3 +16,38 @@ export const RepositoriesConnectionDetailFragment = gql`
         }
     }
 `
+
+export const RepositoryFullDetailsFragment = gql`
+    fragment RepositoryFullDetails on Repository{
+        id,
+        ownerName,
+        name,
+        createdAt,
+        fullName,
+        reviews{
+            edges {
+                node {
+                  id
+                  text
+                  rating
+                  createdAt
+                  user {
+                    id
+                    username
+                  }
+                }
+              }
+        },
+        ratingAverage,
+        reviewCount,
+        stargazersCount,
+        watchersCount,
+        forksCount,
+        openIssuesCount,
+        url,
+        ownerAvatarUrl,
+        description,
+        language,
+        authorizedUserHasReviewed,
+    }
+`

@@ -1,5 +1,6 @@
 import {gql} from '@apollo/client';
-import {RepositoriesConnectionDetailFragment} from './fragments'
+import {RepositoriesConnectionDetailFragment, RepositoryFullDetailsFragment} from './fragments'
+
 
 export const REPOSITORIES_CONNECTION = gql`
     query getRepositoriesConnection($after: String, $first: Int,$orderDirection: OrderDirection, $orderBy: AllRepositoriesOrderBy, $searchKeyword: String, $ownerName:String){
@@ -17,4 +18,13 @@ export const CHECK_AUTHORIZATION = gql`
             reviewCount,
         }
     }
+`
+
+
+export const GET_REPOSITORY = gql`
+    query getRepository($id: ID!){
+        repository(id:$id){
+        ...RepositoryFullDetails
+        }
+    }${RepositoryFullDetailsFragment}
 `
