@@ -7,12 +7,11 @@ const useCreateReview = () => {
     const createReview = async ({repositoryName,ownerName,rating,text}) => {
         //console.log(repositoryName,ownerName,rating,text)
         await review({
-            variables:{review:{
-                repositoryName,ownerName,rating,text
-            }}
+            variables:{
+                review:{ repositoryName,ownerName,rating,text}
+            }
         });
     }
-
     return [createReview,result];
 
 }

@@ -39,7 +39,7 @@ const CreateReview = () => {
     const [createReview,result] = useCreateReview();
     const onSubmit = async (values) => {
         const {ownerName,repositoryName,rating,text} = values;
-        console.log(values)
+        
         if(!ownerName || !repositoryName || !rating){
             console.log('missing value');
             return;
