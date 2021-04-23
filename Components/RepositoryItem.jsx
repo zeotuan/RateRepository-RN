@@ -3,7 +3,7 @@ import {View, StyleSheet, Text, Image, Pressable} from 'react-native';
 import LanguageItem from './languageItem'
 import {useHistory} from  'react-router-native'
 const RepositoryItem = (props) => {
-    const {id,fullName, description, language, forksCount, stargazersCount, ratingAverage, reviewCount,ownerAvatarUrl } = props.item
+    const {name,id, description, language, forksCount, stargazersCount, ratingAverage, reviewCount,ownerAvatarUrl } = props.item
     const history = useHistory()
     return (
         <Pressable onPress={()=>{history.push(`/repositories/${id}`)}}>
@@ -11,8 +11,7 @@ const RepositoryItem = (props) => {
                 <View style={styles.avatarNameContainer}>
                     <Image style={styles.avatar} source={{uri:ownerAvatarUrl}}/>
                     <View style={styles.NameDescriptionContainer}>
-                        <Text testID='RepositoryFullName'style={{fontWeight:'bold'}}>{fullName}</Text>
-                        <Text>{description}</Text>
+                        <Text testID='RepositoryFullName' style={{fontWeight:'bold'}}>{name}:{description}</Text>
                         <View style={styles.languagesContainer}>
                             <LanguageItem language={language}/> 
                         </View>

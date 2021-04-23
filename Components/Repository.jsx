@@ -16,7 +16,7 @@ const Repository = (props) => {
         return <Text>Loading Repository</Text>
     }
     const reviewNodes = RepositoryResult.data.repository.reviews.edges.map(edge => edge.node)
-
+    console.log(RepositoryResult.data.repository)
     return (
         <View style={styles.repository}> 
             <RepositoryItem item={RepositoryResult.data.repository}/>

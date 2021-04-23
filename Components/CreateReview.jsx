@@ -12,7 +12,7 @@ const initialValues={
     ownerName:'',
     repositoryName:'',
     rating:'',
-    review:''
+    text:''
 }
 
 const validationSchema= yup.object().shape({
@@ -26,24 +26,26 @@ const validationSchema= yup.object().shape({
         .required('repository name is required'),
     rating: yup
         .number()
+        .integer()
         .min(0,'rating must be greater than 0')
         .max(100,'rating must be lower than 100')
         .required('rating is required'),
-    review: yup
-        .string()   
+    text: yup
+        .string(),
 })
 
 const CreateReview = () => {
     let history = useHistory();
     const [createReview,result] = useCreateReview();
     const onSubmit = async (values) => {
-        const {ownerName,repositoryName,rating,review} = values;
+        const {ownerName,repositoryName,rating,text} = values;
+        console.log(values)
         if(!ownerName || !repositoryName || !rating){
             console.log('missing value');
             return;
         }
         try {
-            await createReview({ownerName,repositoryName,rating,review});
+            await createReview({ownerName,repositoryName,rating:parseInt(rating),text});
             if(result.data){
                 history.push('/');
             }
@@ -73,9 +75,9 @@ const ReviewForm = ({onSubmit}) => {
             <FormikTextInput name='ownerName' placeholder='Repository Owner Name'/>
             <FormikTextInput name='repositoryName' placeholder='Repository Name'/>
             <FormikTextInput name='rating' placeholder='Rating between 0 to 100'/>
-            <FormikTextInput name='review' placeholder='Review'/>
+            <FormikTextInput name='text' placeholder='Review'/>
             <Pressable style={styles.button} onPress={onSubmit}>
-                <Text style={styles.buttonText}>SignIn</Text>
+                <Text style={styles.buttonText}>Submit Review</Text>
             </Pressable>
         </View>
     )

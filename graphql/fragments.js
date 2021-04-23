@@ -5,6 +5,7 @@ export const RepositoriesConnectionDetailFragment = gql`
         edges{
             node{
                 id,
+                name,
                 reviewCount,
                 ratingAverage,
                 ownerAvatarUrl,
