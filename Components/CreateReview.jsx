@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 import {Formik} from 'formik';
 import {useHistory} from 'react-router-native';
 import FormikTextInput from './FormikTextInput';
@@ -38,7 +38,7 @@ const CreateReview = () => {
     const [createReview,result] = useCreateReview();
     const onSubmit = async (values) => {
         const {ownerName,repositoryName,rating,review} = values;
-        if(!repositoryOwnerName || !repositoryName || !rating){
+        if(!ownerName || !repositoryName || !rating){
             console.log('missing value');
             return;
         }
@@ -70,7 +70,7 @@ const CreateReview = () => {
 const ReviewForm = ({onSubmit}) => {
     return (
         <View>
-            <FormikTextInput name='repositoryOwnerName' placeholder='Repository Owner Name'/>
+            <FormikTextInput name='ownerName' placeholder='Repository Owner Name'/>
             <FormikTextInput name='repositoryName' placeholder='Repository Name'/>
             <FormikTextInput name='rating' placeholder='Rating between 0 to 100'/>
             <FormikTextInput name='review' placeholder='Review'/>

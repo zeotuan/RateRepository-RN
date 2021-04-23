@@ -50,7 +50,7 @@ const AppBar = () => {
                             result.data?
                                 result.data.authorizedUser?
                                     <>
-                                        <Link to="/CreateReview"><Text style={styles.appBarText}>SignIn</Text></Link>
+                                        <Link to="/CreateReview"><Text style={styles.appBarText}>Create Review</Text></Link>
                                         <Text style={styles.appBarText} onPress={signOut}>SignOut</Text>
                                     </>
                                     :<Link to="/SignIn"><Text style={styles.appBarText}>SignIn</Text></Link>
