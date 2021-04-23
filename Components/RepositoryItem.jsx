@@ -51,13 +51,11 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         justifyContent:'space-between',
         backgroundColor:'white',
-        elevation:5,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.8,
-        shadowRadius: 1, 
-        
-        
+        // elevation:5,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 1 },
+        // shadowOpacity: 0.8,
+        // shadowRadius: 1, 
     },
     avatar:{
         width:30,
