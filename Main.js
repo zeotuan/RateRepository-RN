@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import RepositoryList from './Components/RepositoryList';
 import AppBar from './Components/AppBar';
 import SignIn from './Components/SignIn';
+import CreateReview from './Components/CreateReview'
 import {Route, Switch} from 'react-router-native';
 import Repository from './Components/Repository';
 
@@ -21,6 +22,9 @@ export default function Main() {
             <Route path='/Repositories/:id'>
               <Repository />
             </Route>
+            <Route path='/CreateReview'>
+              <CreateReview />  
+            </Route> 
         </Switch>
         </View>
   );

@@ -16,7 +16,7 @@ const useSignIn = () => {
         await mutate({variables:{credentials:{username,password}}});
     }
 
-    return [signIn,result]
+    return [signIn,result];
 }
 
 export default useSignIn

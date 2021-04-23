@@ -6,9 +6,7 @@ const ReviewItem = (props) => {
     console.log(text,rating,createdAt,user)
     return (
         <View style={styles.reviewContainer}>
-           
-                <Text style={styles.ratingContainer}>{rating}</Text>
-            
+            <Text style={styles.ratingContainer}>{rating}</Text>
             <View style={styles.rightSideReviewSubContainer}> 
                 <Text style={styles.userName}>{user.username}</Text>
                 <Text>{createdAt}</Text>

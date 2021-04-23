@@ -49,7 +49,10 @@ const AppBar = () => {
                         {
                             result.data?
                                 result.data.authorizedUser?
-                                    <Text style={styles.appBarText} onPress={signOut}>SignOut</Text>
+                                    <>
+                                        <Link to="/CreateReview"><Text style={styles.appBarText}>SignIn</Text></Link>
+                                        <Text style={styles.appBarText} onPress={signOut}>SignOut</Text>
+                                    </>
                                     :<Link to="/SignIn"><Text style={styles.appBarText}>SignIn</Text></Link>
                                 :<Link to="/SignIn"><Text style={styles.appBarText}>SignIn</Text></Link>
                         }
