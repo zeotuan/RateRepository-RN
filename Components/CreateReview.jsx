@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {Pressable} from 'react-native';
+import {Pressable, StyleSheet} from 'react-native';
 import {Formik} from 'formik';
 import {useHistory} from 'react-router-native';
 import FormikTextInput from './FormikTextInput';
@@ -9,13 +9,13 @@ import useCreateReview from '../Hooks/useCreateReview';
 
 
 const initialValues={
-    ownerName='',
-    repositoryName='',
-    rating='',
-    review=''
+    ownerName:'',
+    repositoryName:'',
+    rating:'',
+    review:''
 }
 
-const validationSchema= yup.object.shape({
+const validationSchema= yup.object().shape({
     ownerName: yup
         .string()
         .min(3,'repository owner name must be longer than 3 characters')

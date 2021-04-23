@@ -17,4 +17,4 @@ const useCreateReview = () => {
 }
 
 
-export default createReview;
+export default useCreateReview;
