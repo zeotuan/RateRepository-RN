@@ -6,6 +6,7 @@ import FormikTextInput from './FormikTextInput'
 import Text from './Text';
 import * as yup from 'yup';
 import useSignIn from '../Hooks/useSignIn'
+import theme from '../theme'
 
 
 const initialValues = {
@@ -29,8 +30,8 @@ const SignInForm = ({onSubmit}) => {
         <View>
             <FormikTextInput name='username' placeholder='username'/>
             <FormikTextInput name='password' placeholder='password' secureTextEntry={true}/>
-            <Pressable style={styles.button} onPress={onSubmit}>
-                <Text style={styles.buttonText}>SignIn</Text>
+            <Pressable style={theme.button} onPress={onSubmit}>
+                <Text style={theme.buttonText}>SignIn</Text>
             </Pressable>
         </View>
     )
@@ -53,7 +54,6 @@ const SignIn = () => {
         }
         try {
             await signIn({ username, password });
-
           } catch (e) {
             console.log(e);
         }
@@ -61,7 +61,6 @@ const SignIn = () => {
 
     return (
         <View>
-            <NativeText>The sign in View</NativeText>
             <Formik 
                 initialValues={initialValues} 
                 onSubmit={onSubmit}
@@ -74,21 +73,4 @@ const SignIn = () => {
     )
 };
 
-const styles = StyleSheet.create({
-    button:{
-        borderWidth: 2,
-        borderRadius: 5,
-        borderColor:'blue',
-        backgroundColor:'blue',
-        justifyContent:'center',
-        height: 40,
-        margin: 12
-    },
-    buttonText:{
-        color:'white',
-        fontSize:10
-    },
-    
-});
-
-export default SignIn
+export default SignIn;

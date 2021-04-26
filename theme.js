@@ -20,6 +20,19 @@ const theme = {
       normal: '400',
       bold: '700',
     },
+    button:{
+      borderWidth: 2,
+      borderRadius: 5,
+      borderColor:'blue',
+      backgroundColor:'blue',
+      justifyContent:'center',
+      height: 40,
+      margin: 12
+    },
+    buttonText:{
+      color:'white',
+      fontSize:10
+    },
   };
   
   export default theme;

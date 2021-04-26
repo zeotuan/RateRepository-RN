@@ -15,8 +15,15 @@ const useRepositories = () => {
     //     setRepositories(json);
     // }
 
-    const fetchRepositories = async () => {
-        getRepositoriesConnection({variables:{orderBy:"RATING_AVERAGE"}});
+    const fetchRepositories = async (orderBy='CREATED_AT',orderDirection='ASC', searchKeyword='') => {
+        // let order
+        // if(orderBy){
+        //     order.orderBy = orderBy
+        // }
+        // if(orderDirection){
+        //     order.orderDirection = orderDirection
+        // }
+        getRepositoriesConnection({variables:{orderBy,orderDirection,searchKeyword}});
     }
     
     useEffect(()=>{

@@ -52,3 +52,25 @@ export const RepositoryFullDetailsFragment = gql`
         authorizedUserHasReviewed,
     }
 `
+
+export const UserFullDetailFragment = gql`
+    fragment UserFullDetailFragment on User{
+        id,
+        username,
+        createdAt,
+        reviewCount,
+        reviews{
+            pageInfo,
+            edges{
+                cursor,
+                node{
+                    id,
+                    text,
+                    createdAt,
+                    rating,
+                    repositoryId
+                }
+            }
+        }
+    }
+`

@@ -1,5 +1,8 @@
 import {gql} from '@apollo/client';
-import {RepositoriesConnectionDetailFragment, RepositoryFullDetailsFragment} from './fragments'
+import {
+    RepositoriesConnectionDetailFragment,
+    RepositoryFullDetailsFragment
+} from './fragments'
 
 
 export const REPOSITORIES_CONNECTION = gql`

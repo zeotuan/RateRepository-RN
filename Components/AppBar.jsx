@@ -25,6 +25,14 @@ const styles = StyleSheet.create({
   // ...
 });
 
+const GuessAppBar = () => {
+    return (
+        <>
+            <Link to="/SignIn"><Text style={styles.appBarText}>Sign In</Text></Link>
+            <Link to='/SignUp'><Text style={styles.appBarText}>Sign Up</Text></Link>
+        </> 
+    )
+}
 
 const AppBar = () => {
     const authStorage = useAuthStorage();
@@ -51,10 +59,10 @@ const AppBar = () => {
                                 result.data.authorizedUser?
                                     <>
                                         <Link to="/CreateReview"><Text style={styles.appBarText}>Create Review</Text></Link>
-                                        <Text style={styles.appBarText} onPress={signOut}>SignOut</Text>
+                                        <Text style={styles.appBarText} onPress={signOut}>Sign Out</Text>
                                     </>
-                                    :<Link to="/SignIn"><Text style={styles.appBarText}>SignIn</Text></Link>
-                                :<Link to="/SignIn"><Text style={styles.appBarText}>SignIn</Text></Link>
+                                    :GuessAppBar()
+                                :GuessAppBar()
                         }
                     </View>
                 

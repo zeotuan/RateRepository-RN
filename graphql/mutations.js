@@ -1,4 +1,5 @@
 import {gql} from '@apollo/client';
+import {UserFullDetailFragment} from './fragments';
 
 export const SIGNIN = gql`
     mutation signin($credentials:AuthorizeInput){
@@ -17,4 +18,12 @@ export const CREATE_REVIEW = gql`
             text
         }
     }
+`
+
+export const SIGN_UP = gql`
+    mutation createUser($user: CreateUserInput){
+        createUser(user:$user){
+            ...UserFullDetailFragment
+        }
+    }${UserFullDetailFragment}
 `
