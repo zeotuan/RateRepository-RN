@@ -5,7 +5,7 @@ import useRepositories from '../Hooks/useRepositories';
 import ReviewFilter from './ReviewFilter';
 
 const RepositoryList = () => {
-  const {repositories,refetch} = useRepositories();
+  const {repositories,refetch,changeVariables} = useRepositories();
   const repositoryNodes = repositories
   ? repositories.repositories.edges.map(edge => edge.node)
   : []
@@ -21,7 +21,7 @@ const RepositoryList = () => {
   return (
     <FlatList
       onEndReached={onEndReach}
-      ListHeaderComponent={<ReviewFilter refetch={refetch}/>}
+      ListHeaderComponent={<ReviewFilter changeVariables={changeVariables} refetch={refetch}/>}
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({item})=> <RepositoryItem key={item.id} item={item}/>}

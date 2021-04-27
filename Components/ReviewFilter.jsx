@@ -6,13 +6,14 @@ import Text from './Text';
 import theme from '../theme';
 import {useDebouncedCallback} from 'use-debounce';
 
-const ReviewFilter = ({refetch}) => {
+const ReviewFilter = ({changeVariables, refetch}) => {
     const [orderBy, setOrderBy] = useState('CREATED_AT');
     const [orderDirection, setOrderDirection] = useState('ASC');
-    const [searchKeyWord, setSearchKeyWord] = useState('');
+    const [searchKeyword, setSearchKeyWord] = useState('');
     
     const filterByKeyword = (query) => {
-        //setSearchKeyWord(query);
+        setSearchKeyWord(query);
+        changeVariables({orderBy,orderDirection,searchKeyword});
         //refetch does not cause unmounted 
         debounced(query);
     }
@@ -20,17 +21,25 @@ const ReviewFilter = ({refetch}) => {
     const debounced = useDebouncedCallback(
         
         (searchKeyWord) => {
-            setSearchKeyWord(searchKeyWord);
-            refetch(orderBy,orderDirection,searchKeyWord);
+            changeVariables({orderBy,orderDirection,searchKeyword});
+            refetch();
         },
         // delay in ms
         500
-      );
+    );
+
+    const sort = () => {
+        changeVariables({orderBy,orderDirection})
+        refetch()
+    }
+
+    
+    
     return (
         <View style={styles.filterContainer}>
             <Searchbar 
                 placeholder='Enter KeyWord'
-                value={searchKeyWord}
+                value={searchKeyword}
                 onChangeText={query=>{filterByKeyword(query)}}
             />
             <View style={styles.sortContainer}>
@@ -58,11 +67,11 @@ const ReviewFilter = ({refetch}) => {
                         <Picker.Item label='DESC' value='DESC' />
                     </Picker>
                 </View>
-                <Pressable style={styles.button} onPress={()=>{refetch(orderBy,orderDirection,searchKeyWord)}}>
-                    <Text style={theme.buttonText}>Filter Review</Text>
+                <Pressable style={styles.button} onPress={()=>{sort()}}>
+                    <Text style={theme.buttonText}>Sort Review</Text>
                 </Pressable>
             </View>
-            <Text>Reviews result for {searchKeyWord?searchKeyWord:'all'} sorted by {orderBy} {orderDirection}</Text>
+            <Text>Reviews result for {searchKeyword?searchKeyword:'all'} sorted by {orderBy} {orderDirection}</Text>
         </View>
     )
 }

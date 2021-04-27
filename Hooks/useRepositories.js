@@ -1,11 +1,18 @@
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 import {useLazyQuery} from '@apollo/client';
 import {REPOSITORIES_CONNECTION} from '../graphql/queries'
 
 const useRepositories = () => {
+    const [variables,setVariables] = useState({
+        orderBy:'CREATED_AT',
+        orderDirection:'ASC',
+        searchKeyword:'',
+    });
     const [getRepositoriesConnection,{data,loading}] = useLazyQuery(REPOSITORIES_CONNECTION, {
-        //onCompleted: data => console.log(data)
+        onCompleted: data => console.log('complted'),
+        variables
     })
+    
     // const fetchRepositories = async () => {
     //     setLoading(true);
 
@@ -15,22 +22,19 @@ const useRepositories = () => {
     //     setRepositories(json);
     // }
 
-    const fetchRepositories = async (orderBy='CREATED_AT',orderDirection='ASC', searchKeyword='') => {
-        // let order
-        // if(orderBy){
-        //     order.orderBy = orderBy
-        // }
-        // if(orderDirection){
-        //     order.orderDirection = orderDirection
-        // }
-        getRepositoriesConnection({variables:{orderBy,orderDirection,searchKeyword}});
+    const fetchRepositories = async () => {
+        getRepositoriesConnection({variables:variables});
     }
     
+    const changeVariables = (values) => {
+        setVariables({...variables,...values})
+    }
+
     useEffect(()=>{
         fetchRepositories();
     },[])
 
-    return {repositories:data,loading,refetch:fetchRepositories};
+    return {repositories:data,loading,refetch:fetchRepositories, changeVariables};
 }
 
 export default useRepositories;
