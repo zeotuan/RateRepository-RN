@@ -4,8 +4,12 @@ import ReviewItem from './ReviewItem'
 
 const RepositoryReviews = (props) => {
     const {reviewNodes} = props
+    const onEndReach = () => {
+      props.fetchMore();
+    }
     return (
         <FlatList
+                onEndReached={onEndReach}
                 data={reviewNodes}
                 ItemSeparatorComponent={ItemSeparator}
                 renderItem={({item})=> <ReviewItem key={item.id} item={item}/>}

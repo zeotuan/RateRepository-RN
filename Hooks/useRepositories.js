@@ -1,40 +1,45 @@
 import {useEffect,useState} from 'react'
-import {useLazyQuery} from '@apollo/client';
+import {useQuery    } from '@apollo/client';
 import {REPOSITORIES_CONNECTION} from '../graphql/queries'
 
 const useRepositories = () => {
     const [variables,setVariables] = useState({
+        first:2,
         orderBy:'CREATED_AT',
         orderDirection:'ASC',
         searchKeyword:'',
     });
-    const [getRepositoriesConnection,{data,loading}] = useLazyQuery(REPOSITORIES_CONNECTION, {
-        onCompleted: data => console.log('complted'),
+    const {data,loading,fetchMore,...result} = useQuery(REPOSITORIES_CONNECTION, {
+        onCompleted: data => console.log(data),
         variables
     })
     
-    // const fetchRepositories = async () => {
-    //     setLoading(true);
-
-    //     const response = await fetch('http://192.168.1.25:5000/api/repositories');
-    //     const json = await response.json();
-    //     setLoading(false);
-    //     setRepositories(json);
-    // }
-
-    const fetchRepositories = async () => {
-        getRepositoriesConnection({variables:variables});
-    }
     
     const changeVariables = (values) => {
         setVariables({...variables,...values})
     }
 
-    useEffect(()=>{
-        fetchRepositories();
-    },[])
+    const handleFetchMore = () => {
+        const canHandleFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
 
-    return {repositories:data,loading,refetch:fetchRepositories, changeVariables};
+        if(!canHandleFetchMore){
+            return;
+        }
+
+        fetchMore({
+            variables:{
+                after:data.repositories.pageInfo.endCursor,
+                ...variables,
+            },
+        });
+    };
+
+    return {
+        repositories:data,
+        fetchMore:handleFetchMore,
+        loading,
+        changeVariables, 
+        ...result};
 }
 
 export default useRepositories;

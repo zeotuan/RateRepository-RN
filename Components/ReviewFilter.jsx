@@ -6,14 +6,14 @@ import Text from './Text';
 import theme from '../theme';
 import {useDebouncedCallback} from 'use-debounce';
 
-const ReviewFilter = ({changeVariables, refetch}) => {
+const ReviewFilter = ({changeVariables}) => {
     const [orderBy, setOrderBy] = useState('CREATED_AT');
     const [orderDirection, setOrderDirection] = useState('ASC');
     const [searchKeyword, setSearchKeyWord] = useState('');
     
     const filterByKeyword = (query) => {
         setSearchKeyWord(query);
-        changeVariables({orderBy,orderDirection,searchKeyword});
+        //changeVariables({orderBy,orderDirection,searchKeyword});
         //refetch does not cause unmounted 
         debounced(query);
     }
@@ -22,7 +22,6 @@ const ReviewFilter = ({changeVariables, refetch}) => {
         
         (searchKeyWord) => {
             changeVariables({orderBy,orderDirection,searchKeyword});
-            refetch();
         },
         // delay in ms
         500
@@ -30,7 +29,6 @@ const ReviewFilter = ({changeVariables, refetch}) => {
 
     const sort = () => {
         changeVariables({orderBy,orderDirection})
-        refetch()
     }
 
     

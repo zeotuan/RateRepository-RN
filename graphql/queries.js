@@ -25,9 +25,44 @@ export const CHECK_AUTHORIZATION = gql`
 
 
 export const GET_REPOSITORY = gql`
-    query getRepository($id: ID!){
+    query getRepository($id: ID!, $first:Int, $after:String){
         repository(id:$id){
-        ...RepositoryFullDetails
+            id,
+            ownerName,
+            name,
+            createdAt,
+            fullName,
+            reviews(first:$first, after:$after){
+                edges {
+                    node {
+                        id
+                        text
+                        rating
+                        createdAt
+                        user {
+                            id
+                            username
+                        }
+                    }
+                },
+                pageInfo{
+                    hasPreviousPage,
+                    hasNextPage,
+                    startCursor,
+                    endCursor
+                }
+            },
+            ratingAverage,
+            reviewCount,
+            stargazersCount,
+            watchersCount,
+            forksCount,
+            openIssuesCount,
+            url,
+            ownerAvatarUrl,
+            description,
+            language,
+            authorizedUserHasReviewed,
         }
-    }${RepositoryFullDetailsFragment}
+    }
 `

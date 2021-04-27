@@ -3,6 +3,7 @@ import {gql} from '@apollo/client';
 export const RepositoriesConnectionDetailFragment = gql`
     fragment RepositoriesConnectionDetails on RepositoryConnection{
         edges{
+            cursor,
             node{
                 id,
                 name,
@@ -14,6 +15,12 @@ export const RepositoriesConnectionDetailFragment = gql`
                 stargazersCount,
                 forksCount
             }
+        },
+        pageInfo{
+            hasPreviousPage,
+            hasNextPage,
+            startCursor,
+            endCursor
         }
     }
 `

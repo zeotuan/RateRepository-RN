@@ -9,19 +9,37 @@ import RepositoryReviews from './RepositoryReviews';
 
 const Repository = (props) => {
     const id = useParams().id
-    const RepositoryResult = useQuery(GET_REPOSITORY,{
-        variables:{id}
+    const {data,loading,fetchMore} = useQuery(GET_REPOSITORY,{
+        variables:{
+            id,
+            first:1,
+        }
     })
-    if(RepositoryResult.loading){
+
+    const handleFetchMore = () => {
+        const canHandleFetchMore = !loading && data?.repository.reviews.pageInfo.hasNextPage
+        if(!canHandleFetchMore){
+            return;
+        }
+
+        fetchMore({
+            variables:{
+                id,
+                first:1,
+                after:data.repository.reviews.pageInfo.endCursor,
+            }
+        })
+    }
+
+    if(loading){
         return <Text>Loading Repository</Text>
     }
-    const reviewNodes = RepositoryResult.data.repository.reviews.edges.map(edge => edge.node)
-    console.log(RepositoryResult.data.repository)
+    const reviewNodes = data.repository.reviews.edges.map(edge => edge.node)
     return (
         <View style={styles.repository}> 
-            <RepositoryItem item={RepositoryResult.data.repository}/>
-            <Button title='Open in Github' style={styles.button} onPress={()=>{Linking.openURL(`${RepositoryResult.data.repository.url}`)}}></Button>
-            <RepositoryReviews reviewNodes={reviewNodes} />
+            <RepositoryItem item={data.repository}/>
+            <Button title='Open in Github' style={styles.button} onPress={()=>{Linking.openURL(`${data.repository.url}`)}}></Button>
+            <RepositoryReviews reviewNodes={reviewNodes} fetchMore={handleFetchMore} />
         </View>
     )
 }
