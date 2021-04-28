@@ -28,7 +28,8 @@ export const GET_AUTHORIZED_USER = gql`
                         id,
                         repository{
                             id,
-                            name
+                            name,
+                            url
                         },
                         rating,
                         createdAt,

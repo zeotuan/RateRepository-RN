@@ -66,7 +66,7 @@ const ReviewFilter = ({changeVariables}) => {
                     </Picker>
                 </View>
                 <Pressable style={styles.button} onPress={()=>{sort()}}>
-                    <Text style={theme.buttonText}>Sort Review</Text>
+                    <Text style={Theme.buttonText}>Sort Review</Text>
                 </Pressable>
             </View>
             <Text>Reviews result for {searchKeyword?searchKeyword:'all'} sorted by {orderBy} {orderDirection}</Text>

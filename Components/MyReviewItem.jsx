@@ -1,10 +1,33 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {useHistory} from 'react-router-native';
 import Text from './Text';
 import Theme from '../theme';
 
 const MyReviewItem = (props) => {
     const {rating,createdAt, text,repository} = props.item
+    const history = useHistory()
+    const handleDeleteReview  = () => {
+        Alert.alert(
+            'Delete review',
+            'Are you sure you want to delete this review?',
+            [
+                {
+                    text:'CANCEL',
+                    onPress:()=>{console.log('cancel pressed')},
+                    style:'cancel'
+                },
+                {
+                    text:'DELETE',
+                    onPress:()=>{console.log('delete pressed')},
+                    style:'default'
+                }
+            ]
+        )
+    };
+
+
+
     return (
         <View style={styles.reviewContainer}>
             <View style={styles.reviewInfoContainer}>
@@ -16,10 +39,10 @@ const MyReviewItem = (props) => {
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={()=>{}}>
+                <TouchableOpacity style={styles.button} onPress={()=>{history.push(`/repositories/${repository.id}`)}}>
                     <Text style={styles.buttonText}>View Repository</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={Theme.deleteButton} onPress={()=>{}}>
+                <TouchableOpacity style={Theme.deleteButton} onPress={handleDeleteReview}>
                     <Text style={styles.buttonText}>Delete Review</Text>
                 </TouchableOpacity>
             </View>
