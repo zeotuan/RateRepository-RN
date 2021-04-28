@@ -6,7 +6,7 @@ import Text from './Text';
 import MyReviewItem from './MyReviewItem';
 
 const MyReview = () => {
-    const result = useQuery(GET_AUTHORIZED_USER);
+    const {result,refetch} = useQuery(GET_AUTHORIZED_USER);
     if(result.loading){
         return <Text> Loading reviews... </Text>
     }
@@ -20,7 +20,7 @@ const MyReview = () => {
             <FlatList 
                 onEndReached={onEndReach}
                 data={reviews}
-                renderItem={({item}) => {return (<MyReviewItem key={item.id} item={item}/>)}}
+                renderItem={({item}) => {return (<MyReviewItem key={item.id} item={item} refetch={refetch}/>)}}
             />
         </View>
     )

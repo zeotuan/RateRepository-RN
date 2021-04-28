@@ -3,10 +3,14 @@ import {View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {useHistory} from 'react-router-native';
 import Text from './Text';
 import Theme from '../theme';
+import useDeleteReview from '../Hooks/useDeleteReview';
 
 const MyReviewItem = (props) => {
-    const {rating,createdAt, text,repository} = props.item
+    const {id,rating,createdAt, text,repository} = props.item
+    const refetch = props.refetch
     const history = useHistory()
+    const [deleteReview,result] = useDeleteReview({refetch});
+
     const handleDeleteReview  = () => {
         Alert.alert(
             'Delete review',
@@ -19,7 +23,7 @@ const MyReviewItem = (props) => {
                 },
                 {
                     text:'DELETE',
-                    onPress:()=>{console.log('delete pressed')},
+                    onPress:()=>{deleteReview({id})},
                     style:'default'
                 }
             ]
