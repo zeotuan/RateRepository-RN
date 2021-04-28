@@ -1,9 +1,9 @@
 import React from 'react';
 import {View,StyleSheet,Text,Pressable} from 'react-native';
+import Theme from '../theme'
 
 const ReviewItem = (props) => {
     const {text,rating,createdAt,user} = props.item
-    console.log(text,rating,createdAt,user)
     return (
         <View style={styles.reviewContainer}>
             <Text style={styles.ratingContainer}>{rating}</Text>
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
         width:40,
         borderRadius:20,
         borderWidth: 2,
-        borderColor:'blue',
+        borderColor: Theme.colors.primary,
         backgroundColor:'white',
-        color:'blue',
+        color:Theme.colors.primary,
         padding:5,
         paddingTop:10,
         textAlign:'center',

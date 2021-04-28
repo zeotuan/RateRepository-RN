@@ -3,7 +3,7 @@ import {Pressable, StyleSheet, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import { Searchbar } from 'react-native-paper';
 import Text from './Text';
-import theme from '../theme';
+import Theme from '../theme';
 import {useDebouncedCallback} from 'use-debounce';
 
 const ReviewFilter = ({changeVariables}) => {
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         flexDirection:'row'
     },
     button:{
-        ...theme.button,
+        ...Theme.button,
         height:20,
         margin:0
     }

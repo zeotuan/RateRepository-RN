@@ -1,5 +1,6 @@
-import React from 'react'
-import {Text, StyleSheet } from 'react-native'
+import React from 'react';
+import {Text, StyleSheet } from 'react-native';
+import Theme from '../theme';
 
 const LanguageItem = ({language}) => {
     return (
@@ -9,7 +10,7 @@ const LanguageItem = ({language}) => {
 
 const styles = StyleSheet.create({
     languageItem:{
-        backgroundColor:'blue',
+        backgroundColor:Theme.colors.primary,
         color:'white',
         borderRadius:5
     }

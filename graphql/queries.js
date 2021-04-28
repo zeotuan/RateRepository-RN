@@ -13,12 +13,35 @@ export const REPOSITORIES_CONNECTION = gql`
     }
     ${RepositoriesConnectionDetailFragment}
 `
-export const CHECK_AUTHORIZATION = gql`
-    query getAuthorizedUser{
+export const GET_AUTHORIZED_USER = gql`
+    query getAuthorizedUser($first: Int,$after: String){
         authorizedUser{
             id,
             username,
             reviewCount,
+            createdAt,
+            reviews(first:$first, after:$after){
+                totalCount,
+                edges{
+                    cursor,
+                    node{
+                        id,
+                        repository{
+                            id,
+                            name
+                        },
+                        rating,
+                        createdAt,
+                        text
+                    }
+                },
+                pageInfo{
+                    hasPreviousPage,
+                    hasNextPage,
+                    startCursor,
+                    endCursor
+                }
+            }
         }
     }
 `

@@ -6,7 +6,7 @@ import FormikTextInput from './FormikTextInput';
 import Text from  './Text';
 import * as yup from 'yup';
 import useCreateReview from '../Hooks/useCreateReview';
-
+import Theme from '../theme';
 
 const initialValues={
     ownerName:'',
@@ -86,17 +86,10 @@ const ReviewForm = ({onSubmit}) => {
 
 const styles = StyleSheet.create({
     button:{
-        borderWidth: 2,
-        borderRadius: 5,
-        borderColor:'blue',
-        backgroundColor:'blue',
-        justifyContent:'center',
-        height: 40,
-        margin: 12
+        ...Theme.button
     },
     buttonText:{
-        color:'white',
-        fontSize:10
+        ...Theme.buttonText
     },
 })
 

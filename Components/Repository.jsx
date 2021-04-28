@@ -6,6 +6,7 @@ import Text from './Text';
 import RepositoryItem from './RepositoryItem';
 import {GET_REPOSITORY} from '../graphql/queries';
 import RepositoryReviews from './RepositoryReviews';
+import Theme from '../theme';
 
 const Repository = (props) => {
     const id = useParams().id
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
         padding:10,
     },
     button:{
-        backgroundColor:'blue',
+        backgroundColor:Theme.colors.primary,
         color:'white',
         borderRadius:5,
     }

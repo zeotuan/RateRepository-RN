@@ -7,6 +7,7 @@ import SignUp from './Components/SignUp';
 import CreateReview from './Components/CreateReview';
 import {Route, Switch} from 'react-router-native';
 import Repository from './Components/Repository';
+import MyReview from './Components/MyReview';
 
 
 export default function Main() {
@@ -28,6 +29,9 @@ export default function Main() {
             </Route>
             <Route path='/CreateReview'>
               <CreateReview />  
+            </Route> 
+            <Route path='/MyReview'>
+              <MyReview />
             </Route> 
         </Switch>
         </View>

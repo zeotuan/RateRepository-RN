@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Pressable , Text, ScrollView} from 'react-native';
 import Constants from 'expo-constants';
 import {Link, useHistory} from 'react-router-native';
-import {CHECK_AUTHORIZATION} from '../graphql/queries'
+import {GET_AUTHORIZED_USER} from '../graphql/queries'
 import { useQuery } from '@apollo/client';
 import useAuthStorage from '../Hooks/useAuthStorage';
 import {useApolloClient} from '@apollo/client'
@@ -34,11 +34,21 @@ const GuessAppBar = () => {
     )
 }
 
+const UserAppBar = ({signOut,authorizedUser}) => {
+    return (
+        <>
+            <Link to='/CreateReview'><Text style={styles.appBarText}>Create Review</Text></Link>
+            <Link to='/MyReview'><Text style={styles.appBarText}>My Reviews</Text></Link>
+            <Text style={styles.appBarText} onPress={signOut}>Sign Out</Text>
+        </>
+    )
+}
+
 const AppBar = () => {
     const authStorage = useAuthStorage();
     const apolloClient = useApolloClient()
     const history = useHistory()
-    const result = useQuery(CHECK_AUTHORIZATION);
+    const result = useQuery(GET_AUTHORIZED_USER);
     const signOut = async () => {
         await authStorage.removeAccessToken();
         apolloClient.resetStore();
@@ -57,10 +67,7 @@ const AppBar = () => {
                         {
                             result.data?
                                 result.data.authorizedUser?
-                                    <>
-                                        <Link to="/CreateReview"><Text style={styles.appBarText}>Create Review</Text></Link>
-                                        <Text style={styles.appBarText} onPress={signOut}>Sign Out</Text>
-                                    </>
+                                    UserAppBar({signOut,authorizedUser:result.data.authorizedUser})
                                     :GuessAppBar()
                                 :GuessAppBar()
                         }

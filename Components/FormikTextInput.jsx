@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {useField} from 'formik';
 import TextInput from './TextInput';
 import Text from './Text';
-import theme from '../theme'
+import Theme from '../theme'
 
 
 const FormikTextInput = ({name,...props}) => {
@@ -28,7 +28,7 @@ const FormikTextInput = ({name,...props}) => {
 const styles = StyleSheet.create({
     errorText:{
         marginTop:5,
-        color:theme.colors.error,
+        color:Theme.colors.error,
     },
 
 });
