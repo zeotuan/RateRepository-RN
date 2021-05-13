@@ -11,3 +11,9 @@ frontend/web-build/
 
 # macOS
 frontend/.DS_Store
+
+
+backend/.env
+backend/node_modules
+backend/.DS_Store
+backend/database.sqlite
